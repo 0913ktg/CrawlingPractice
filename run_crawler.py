@@ -16,8 +16,8 @@ from email import encoders
 def run_crawler():
     today = datetime.today()
 
-    from_addr = formataddr(('Google mail', '0913ktg@google.com'))
-    to_addr = formataddr(('Naver mail', '0913ktg@naver.com'))
+    from_addr = formataddr(('Google mail', "your mail address"))
+    to_addr = formataddr(('Naver mail', "customer's mail address"))
 
     #csv 파일이 존재하면 삭제시키기
     [os.remove(f) for f in glob.glob("./asset/*csv")]
@@ -48,7 +48,7 @@ def run_crawler():
         # SMTP 계정 인증 설정
         session.ehlo()
         session.starttls()
-        session.login('0913ktg@gmail.com', 'wpcpcigkoevzktfk')
+        session.login("your mail address", "your google Authentication key")
 
         # 메일 콘텐츠 설정
         message = MIMEMultipart("alternative")
@@ -61,7 +61,7 @@ def run_crawler():
 
         # 메일 콘텐츠 - 내용
         body = '''
-        <h4>안녕하세요 김대겸입니다.</h4>
+        <h4>안녕하세요 [your name]입니다.</h4>
         <p>Google play KR 과 App Store CN의 매출 순위 Top 50을 csv파일로 전송합니다.</p>
         <h4>파일 보는 순서</h4>
         <p>1. 엑셀 실행 후 상단바에서 데이타 -> 텍스트/CSV 선택</p>
