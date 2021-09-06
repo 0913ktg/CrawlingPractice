@@ -20,24 +20,24 @@ def run_crawler():
     to_addr = formataddr(('Naver mail', '0913ktg@naver.com'))
 
     #csv 파일이 존재하면 삭제시키기
-    [os.remove(f) for f in glob.glob("./*csv")]
+    [os.remove(f) for f in glob.glob("./asset/*csv")]
 
     #크롤러 실행 시키고 csv파일 저장
     path = os.getcwd()
     os.chdir(path)
-    os.system("scrapy crawl task1 -o task1.csv -t csv")
+    os.system("scrapy crawl task1 -o asset/task1.csv -t csv")
     time.sleep(40)
 
     #저장된 csv파일을 가공
-    source = pd.read_csv('task1.csv', encoding = 'utf-8')
+    source = pd.read_csv('asset/task1.csv', encoding = 'utf-8')
     korea = source[source['country'] == 'korea'].iloc[:50]
     china = source[source['country'] == 'china'].iloc[:50]
     korea = korea.reset_index(drop=True)
     china = china.reset_index(drop=True)
     korea.index += 1
     china.index += 1
-    korea.to_csv("korea.csv", encoding='utf-8')
-    china.to_csv("china.csv", encoding='utf-8')
+    korea.to_csv("asset/korea.csv", encoding='utf-8')
+    china.to_csv("asset/china.csv", encoding='utf-8')
 
     session = None
     try:
@@ -73,7 +73,7 @@ def run_crawler():
         message.attach( bodyPart )
 
         #메일 콘텐츠 - 첨부파일
-        filenames = ['korea.csv', 'china.csv']
+        filenames = ['asset/korea.csv', 'asset/china.csv']
 
         for filename in filenames:
             attachment = open(filename, 'rb')
@@ -102,7 +102,7 @@ if __name__ == "__main__":
         curr_time = datetime.now(KTZ)
         print(f'시각 : {curr_time.year}-{curr_time.month}-{curr_time.day}  {curr_time.hour} 시 {curr_time.minute} 분 {curr_time.second} 초')
         
-        if curr_time.hour == 15 and curr_time.minute == 26:
+        if curr_time.hour == 16 and curr_time.minute == 12:
             print('크롤링 시작')
             run_crawler()
             print('크롤링 끝')
