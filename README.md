@@ -2,5 +2,5 @@
 
 ## Test crawler
 ```
-$ python3 run_crawler.py
+python3 run_crawler.py
 ```
