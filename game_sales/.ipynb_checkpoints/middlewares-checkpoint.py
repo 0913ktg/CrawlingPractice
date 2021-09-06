@@ -79,7 +79,7 @@ class GameSalesDownloaderMiddleware:
         return middleware
 
     def spider_opened(self, spider):
-        CHROMEDRIVER_PATH = "/home/ubinetserver/docker/Deagyeom_workspace/sumgo/game_sales/chromedriver"
+        CHROMEDRIVER_PATH = "/home/ubinetserver/docker/Deagyeom_workspace/sumgo/CrawlingPractice/chromedriver"
         WINDOW_SIZE = "1920,1080"
 
         chrome_options = Options()
